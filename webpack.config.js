@@ -34,6 +34,9 @@ module.exports = (env) => {
       key: fs.readFileSync('.cert/server.key'),
       cert: fs.readFileSync('.cert/server.crt'),
       ca: fs.readFileSync('.cert/rootCA.pem'),
+      allowedHosts: [
+        'msnascimento.dev'
+      ]
     },
 
     plugins: [

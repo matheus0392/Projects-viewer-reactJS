@@ -6,6 +6,7 @@ module.exports = (env) => {
 
   return {
     entry: ["@babel/polyfill", "./src/index.js"],
+
     watchOptions: {
       aggregateTimeout: 100,
       poll: 100,
@@ -19,15 +20,17 @@ module.exports = (env) => {
 
     devServer: {
       contentBase: path.resolve(__dirname, './dist'),
-      port: 3000,
-      compress: false,
+      port: 80,
+      host: '0.0.0.0',
+      compress: true,
       historyApiFallback: true,
       proxy: [{
         context: '/WebApi/**',
-        target: `http://${env.Docker ? 'backend' : 'localhost'}:8080`,
+        target: `http://${env.docker ? 'api' : '0.0.0.0'}:8080`,
         secure: false,
       }],
     },
+
     plugins: [
       new HtmlWebpackPlugin({
         template: "src/index.html",
@@ -35,7 +38,9 @@ module.exports = (env) => {
       new webpack.ProvidePlugin({
         "React": "react",
      }),
+      new webpack.HotModuleReplacementPlugin(),
     ],
+
     module: {
       rules: [
         {
@@ -45,7 +50,7 @@ module.exports = (env) => {
         {
           test: /\.(js|jsx|tsx)$/,
           exclude: /node_modules/,
-          use: ["babel-loader"]
+          use: ["babel-loader","react-hot-loader/webpack"],
         },
         {
           test: /\.css$/,

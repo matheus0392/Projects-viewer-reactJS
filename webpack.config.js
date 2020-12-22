@@ -29,6 +29,9 @@ module.exports = (env) => {
         target: `http://${env.docker ? 'api' : '0.0.0.0'}:8080`,
         secure: false,
       }],
+      allowedHosts:[
+	'msnascimento.dev'
+	]
     },
 
     plugins: [

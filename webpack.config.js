@@ -1,4 +1,5 @@
 var path = require('path');
+var fs = require('fs');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -20,7 +21,7 @@ module.exports = (env) => {
 
     devServer: {
       contentBase: path.resolve(__dirname, './dist'),
-      port: 80,
+      port: 443,
       host: '0.0.0.0',
       compress: true,
       historyApiFallback: true,
@@ -29,6 +30,10 @@ module.exports = (env) => {
         target: `http://${env.docker ? 'api' : '0.0.0.0'}:8080`,
         secure: false,
       }],
+      https: true,
+      key: fs.readFileSync('.cert/server.key'),
+      cert: fs.readFileSync('.cert/server.crt'),
+      ca: fs.readFileSync('.cert/rootCA.pem'),
     },
 
     plugins: [
@@ -37,7 +42,7 @@ module.exports = (env) => {
       }),
       new webpack.ProvidePlugin({
         "React": "react",
-     }),
+      }),
       new webpack.HotModuleReplacementPlugin(),
     ],
 
@@ -50,7 +55,7 @@ module.exports = (env) => {
         {
           test: /\.(js|jsx|tsx)$/,
           exclude: /node_modules/,
-          use: ["babel-loader","react-hot-loader/webpack"],
+          use: ["babel-loader", "react-hot-loader/webpack"],
         },
         {
           test: /\.css$/,

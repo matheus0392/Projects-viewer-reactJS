@@ -6,7 +6,10 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = (env) => {
 
   return {
+
     entry: ["@babel/polyfill", "./src/index.js"],
+
+    devtool: 'source-map',
 
     watchOptions: {
       aggregateTimeout: 100,
@@ -48,6 +51,13 @@ module.exports = (env) => {
       }),
       new webpack.HotModuleReplacementPlugin(),
     ],
+
+    resolve: {
+      extensions: ['.js', '.jsx', '.tsx', '.scss', '.webpack.js', '.web.js'],
+      alias: {
+        '@': __dirname,
+      },
+    },
 
     module: {
       rules: [

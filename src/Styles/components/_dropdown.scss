@@ -1,0 +1,28 @@
+
+$dropdown-padding: .7rem;
+$theme-gray-low: #aaa;
+
+
+
+.dropdown-custom {
+  position: relative;
+  z-index: 100000;
+}
+
+.dropdown-custom__content {
+  background-color: #fff;
+  border: 1px solid $theme-gray-low;
+  box-shadow: 3px 3px 5px -3px;
+  display: flex;
+  flex-direction: column;
+  height: 15rem;
+  padding: $dropdown-padding;
+  position: absolute;
+  width: 100%;;
+  z-index: 1000;
+}
+
+.dropdown-custom__footer {
+  bottom: $dropdown-padding;
+  margin-top: auto;
+}

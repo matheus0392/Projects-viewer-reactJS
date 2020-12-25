@@ -1,0 +1,147 @@
+.tabs-nav {
+    display: -moz-flex;
+    display: flex;
+    -moz-flex-direction: column;
+    flex-direction: column;
+  }
+  
+  .tabs-nav a {
+    color: $theme-color;
+  }
+  
+  .tabs-nav-sub a {
+    background-color: $theme-color-sub;
+    font-size: 12px;
+    font-weight: normal;
+  }
+  
+  .tabs-nav-sub.sub-active a {
+    color: $theme-color;
+    font-weight: unset;
+  }
+  
+  .menu-active,
+  div.tabs-nav :hover {
+    background-color: $theme-color;
+  }
+  
+  .tabs-nav.menu-active a {
+    color: white;
+  }
+  
+  .nav-icon {
+    float: right;
+  }
+  
+  
+  /*dropdown settings*/
+  span.icon-link.card-settings--active .mdi::before {
+    transition: 0.5s ease-in-out;
+    transform: rotate(60deg) !important;
+  }
+  
+  span.icon-link.card-settings .mdi::before {
+    transition: 0.5s ease-in-out;
+    transform: rotate(0deg) !important;
+  }
+  
+  .card-settings,
+  .card-settings--active {
+    margin: 0 5px;
+  }
+  
+  
+  
+  .card-settings--active span.mdi.mdi-settings {
+    color: $theme-color;
+  }
+  
+  span.mdi.mdi-settings {
+    color: gray;
+  
+    &:hover {
+      color: $theme-color;
+    }
+  }
+  
+  
+  
+  .settings-dropdown {
+    left: 11rem;
+  }
+  
+  .menu-dropdown {
+    right: 1rem;
+    top: 4rem;
+  
+    &.notification {
+      right: 4.5rem;
+    }
+  
+    &.search {
+      right: 2.5rem;
+    }
+  
+    &.export {
+      z-index: 2;
+      top: 1.5rem;
+      right: 1rem;
+      min-width: 8rem;
+    }
+  }
+  
+  .box.settings-dropdown {
+    position: absolute;
+    background-color: white;
+    box-shadow: 1px 1px 5px rgba(50, 50, 50, 0.4);
+    max-width: 20rem;
+  
+    &>div {
+      color: #448C78;
+      padding: 14px;
+      font-weight: normal;
+      border-bottom: 1px #eeeeee solid;
+  
+      &:hover {
+        background-color: #dfdfdf
+      }
+    }
+  }
+  
+  .box.menu-dropdown {
+    position: absolute;
+    background-color: white;
+    box-shadow: 1px 1px 5px rgba(50, 50, 50, 0.4);
+    max-width: 20rem;
+    line-height: normal;
+  
+    &>div {
+  
+      /*&>button {
+        width: -webkit-fill-available;
+        text-align: left;
+      }*/
+  
+      &>div {
+        width: 100%;
+        text-align: left;
+      }
+  
+      &>button {
+        width: 100%;
+        text-align: left;
+  
+        &:hover {
+          background-color: #dfdfdf
+        }
+      }
+  
+      margin: 0;
+    }
+  }
+  
+  .notification--modal {
+    &:hover {
+      background-color: #dfdfdf
+    }
+  }

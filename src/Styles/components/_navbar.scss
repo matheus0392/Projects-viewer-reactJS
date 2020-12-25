@@ -1,0 +1,118 @@
+
+$sides-padding: 10px;
+
+.justify-content-between {
+    padding-left: $sides-padding;
+    padding-right: $sides-padding;
+  }
+  
+  // .navbar {}
+  
+  .navbar__search-div {
+    margin: auto;
+    height: 2rem;
+    width: 24rem;
+  }
+  
+  .navbar__profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0 15px 0 50px;
+  }
+  
+  .navbar__logo-image {
+    width: 16rem;
+    // padding-top:0.5rem;
+  }
+  
+ /* .mdi-magnify-modifier {
+    position: absolute !important;
+    background: transparent;
+    border: none;
+    margin-left: 21.5rem;
+    margin-top: 0.1rem;
+    color: $footer-text;
+    width: 2.4rem;
+    outline: none !important;
+    box-shadow: none;
+  }*/
+  
+  .navbar-input--changes {
+    position: relative;
+    padding-right: 2rem;
+  }
+  
+  .navbar__logo-image__user-name {
+    margin: 3px 0 0 0;
+    font-weight: bold;
+  }
+  
+  .navbar__logo-image__hospital-name {
+    margin-bottom: 0;
+    font-size: 13px;
+  }
+  
+  .navbar__allingItems {
+    display: flex;
+    justify-content: end;
+    align-items: center; 
+  }
+  
+  .navbar--90 {
+    height: 90px;
+    background-color: white;
+    // border-bottom: 2px solid #DDD;
+  }
+  
+  @media (max-width: 720px) {
+    .navbar--90 {
+      height: 55px;
+      background-color: white;
+      // border-bottom: 2px solid #DDD;
+    }
+  
+    .mdi-magnify-modifier {
+      display: none;
+    }
+    
+    .navbar-input--changes {
+      display: none;
+    }
+  
+    .navbar__search-div {
+      display: none;
+    }
+    
+    .navbar__profile-image {
+      display: none;
+    }
+  
+    .navbar__logo-image__hospital-name {
+      display: none;
+    }
+  
+    .navbar__logo-image__user-name {
+      display: none;
+    }
+    
+    .navbar__logo-image {
+      margin-right: auto;
+      margin-left: auto;
+      width: 12rem;
+      padding-top: 0;
+      display: flex;
+    }
+  
+    .navbar__logo-image__city {
+      display: none;
+    }
+  
+    .mdi-menu--modifier {
+      display: none;
+    }
+  
+    .mobile-padding {
+      padding-right: 0;
+    }
+  }

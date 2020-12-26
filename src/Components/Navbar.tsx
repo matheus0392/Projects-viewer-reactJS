@@ -2,17 +2,14 @@ import React from 'react'
 import { useState, useEffect, useContext } from "react"
 import PropTypes from 'prop-types'
 import { Button, Row, Col } from 'reactstrap';
+
 import DropdownBox from '@/src/Components/DropdownBox'
-
 import ConfigContext from "@/src/ConfigContext"
-
-
-import { themeLowGray } from '@/src/Styles/theme'
-
-
-
 import Translate from '@/src/Util/Translate'
 
+const br_flag = 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/320px-Flag_of_Brazil.svg.png'
+const fr_flag = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/320px-Flag_of_France.svg.png'
+const usa_flag = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png'
 
 const Navbar = (props) => {
     const [showNotifications, setShowNotifications] = useState(false)
@@ -36,7 +33,6 @@ const Navbar = (props) => {
                                 }
                             }}
                             >
-                                <div>{Translate('language')}</div>
                                 {getFlag()}
                             </Button>
                         )
@@ -66,11 +62,12 @@ const Navbar = (props) => {
                                 setShowMenu(false)
                                 setShowNotifications(false)
                             }}>
-                                <img style={{ maxWidth: '30px' }} src="https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg" />
+                                <img style={{ maxWidth: '30px' }} src={br_flag} />
                                 <span> {Translate('pt')}</span>
                             </Button>
                         </span>
                     </div>
+
                     <div>
                         <span>
                             <Button color="secondary" onClick={() => {
@@ -79,8 +76,21 @@ const Navbar = (props) => {
                                 setShowMenu(false)
                                 setShowNotifications(false)
                             }}>
-                                <img style={{ maxWidth: '30px' }} src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/320px-Flag_of_France.svg.png" />
+                                <img style={{ maxWidth: '30px' }} src={fr_flag} />
                                 <span> {Translate('fr')}</span>
+                            </Button>
+                        </span>
+                    </div>
+                    <div>
+                        <span>
+                            <Button color="secondary" onClick={() => {
+                                setConfig({ language: 'en' })
+                                localStorage.setItem("config", JSON.stringify({ language: 'en' }))
+                                setShowMenu(false)
+                                setShowNotifications(false)
+                            }}>
+                                <img style={{ maxWidth: '30px' }} src={usa_flag} />
+                                <span> {Translate('en')}</span>
                             </Button>
                         </span>
                     </div>
@@ -91,9 +101,11 @@ const Navbar = (props) => {
 
     const getFlag = () => {
         if (language == undefined || language == 'pt') {
-            return <img style={{ maxWidth: '30px' }} src="https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg" />
+            return <img style={{ maxWidth: '30px' }} src={br_flag} />
         } else if (language == 'fr') {
-            return <img style={{ maxWidth: '30px' }} src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/320px-Flag_of_France.svg.png" />
+            return <img style={{ maxWidth: '30px' }} src={fr_flag} />
+        } else if (language == 'en') {
+            return <img style={{ maxWidth: '30px' }} src={usa_flag} />
         }
     }
 

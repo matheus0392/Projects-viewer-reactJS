@@ -9,7 +9,7 @@ module.exports = (env) => {
 
     entry: ["@babel/polyfill", "./src/index.js"],
 
-    devtool: 'source-map',
+    devtool: 'eval-source-map', //'cheap-module-source-map', //
 
     watchOptions: {
       aggregateTimeout: 100,
@@ -18,7 +18,7 @@ module.exports = (env) => {
 
     output: {
       path: __dirname + "/dist",
-      filename: 'index_bundle.js',
+      filename: 'bundle.js',
       publicPath: '/',
     },
 

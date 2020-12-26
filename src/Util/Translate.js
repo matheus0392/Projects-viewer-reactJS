@@ -1,4 +1,5 @@
 import PT from '@/src/Text/pt'
+import EN from '@/src/Text/en'
 import FR from '@/src/Text/fr'
 import { useContext } from "react"
 import ConfigContext from "@/src/ConfigContext"
@@ -19,6 +20,8 @@ const Translate = (msg) => {
             propertie = PT; break;
         case 'fr':
             propertie = FR; break;
+        case 'en':
+            propertie = EN; break;
     }
 
     for (let i = 0; i < properties.length; i++) {

@@ -24,7 +24,9 @@
     "react-onclickoutside": "6.9.0",
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.1",
+    "react-syntax-highlighter": "15.4.3",
     "reactstrap": "8.7.1",
+    "styled-components": "5.2.1",
     "web-vitals": "0.2.4"
   },
   "devDependencies": {
@@ -32,9 +34,11 @@
     "@babel/polyfill": "7.12.1",
     "@babel/preset-env": "7.12.11",
     "@babel/preset-react": "7.12.10",
+    "@babel/preset-typescript": "7.12.7",
     "babel-loader": "8.2.2",
     "jest": "26.6.0",
     "react-hot-loader": "4.13.0",
+    "typescript": "3.9.7",
     "webpack": "5.11.0",
     "webpack-clean-obsolete-chunks": "0.4.0",
     "webpack-cli": "4.2.0",

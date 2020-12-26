@@ -1,32 +1,18 @@
-const fr = {
-    spring_batch: {
-        annotation: [
-            { info: "@EnableBatchProcessing", desc: "Annotation qui configure le for Spring Batch pour une application et automatiquemet crée beans pour JobRepository, JobLauncher, JobRegistry, PlatformTransactionManager, JobBuilderFactory and StepBuilderFactory." }
-        ],
-        cdi: [
-            { info: 'JobBuilderFactory', desc: 'Objet qui crée jobs' }
-        ],
-        metodos: [
-            { info: "FlatFileItemReader<Info> infoItemReader()", desc: "cria um leitor de arquivo para o step" },
-        ]
-    }
-}
+import obj from './obj'
 
-let  msg={}
-
-msg.language="Langue"
+let msg = JSON.parse(JSON.stringify(obj))
 msg.pt="Portuguais"
 msg.fr="Fraçais"
+msg.en="Anglais"
+msg.metodos='Méthodes'
 
-msg.spring_batch={}
-msg.spring_batch.annotation={}
-msg.spring_batch.annotation.EnableBatchProcessing="Annotation qui configure le for Spring Batch pour une application et automatiquemet crée beans pour JobRepository, JobLauncher, JobRegistry, PlatformTransactionManager, JobBuilderFactory and StepBuilderFactory."
 
-msg.spring_batch.cdi={}
-msg.spring_batch.cdi.JobBuilderFactory='Objet que cria jobs'
+msg.spring_batch.annotation.EnableBatchProcessing = '@EnableBatchProcessing: injecter beans JobRepository, JobLauncher, JobRegistry, PlatformTransactionManager, JobBuilderFactory et StepBuilderFactory.'
+msg.spring_batch.cdi.dataSource = '@Autowired public DataSource dataSource: objet avec renseignement de connexion de base de donné configuré en application.properties.'
+msg.spring_batch.cdi.JobBuilderFactory = '@Autowired public JobBuilderFactory jobBuilderFactory: objet qui crée jobs.'
+msg.spring_batch.cdi.StepBuilderFactory = '@Autowired public StepBuilderFactory stepBuilderFactory: objet qui crée steps.'
+msg.spring_batch.cdi.JobLauncher = '@Autowired public JobLauncher jobLauncher: interface pour exécuter jobs.'
 
-msg.spring_batch.metodos={}
-msg.spring_batch.metodos.infoItemReader="Cria um leitor de arquivo para o step"
 
 
 export default  msg

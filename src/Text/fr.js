@@ -1,7 +1,7 @@
 import obj from './obj'
 
 let msg = JSON.parse(JSON.stringify(obj))
-msg.pt = "Portuguais"
+msg.pt = "Portugais"
 msg.fr = "Fraçais"
 msg.en = "Anglais"
 msg.inicio = 'Départ'

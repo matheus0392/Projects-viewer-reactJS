@@ -58,7 +58,7 @@ function ApiREST() {
             <div>
                 CPF:
                 <span>
-                    <StyledInput name="cpf1" type="number" maxlength={11}
+                    <StyledInput name="cpf1" type="number" maxlength="11"
                         onChange={(e) => { setCpf1(e.target.value) }} />
                 </span>
                 <span>
@@ -82,7 +82,7 @@ function ApiREST() {
                     onChange={(e) => { setName(e.target.value) }} />
 
                 CPF:
-                <StyledInput name="cpf" type="number" maxlength={11}
+                <StyledInput name="cpf" type="number" maxlength="11"
                     onChange={(e) => { setCpf(e.target.value) }} />
 
                 <Button color="danger" onClick={() => {

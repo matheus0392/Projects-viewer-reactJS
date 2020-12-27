@@ -4,9 +4,10 @@ let msg = JSON.parse(JSON.stringify(obj))
 msg.pt = 'Português'
 msg.fr = 'Fracês'
 msg.en = 'Inglês'
+msg.inicio = 'Início'
 msg.metodos = 'Métodos'
 
-msg.spring_batch.annotation.EnableBatchProcessing = '@EnableBatchProcessing: injeta beans JobRepository, JobLauncher, JobRegistry, PlatformTransactionManager, JobBuilderFactory e StepBuilderFactory..'
+msg.spring_batch.annotation.EnableBatchProcessing = '@EnableBatchProcessing: injeta beans JobRepository, JobLauncher, JobRegistry, PlatformTransactionManager, JobBuilderFactory e StepBuilderFactory.'
 msg.spring_batch.cdi.dataSource = '@Autowired public DataSource dataSource: objeto com informações de conexão do banco configurado em application.properties..'
 msg.spring_batch.cdi.JobBuilderFactory = '@Autowired public JobBuilderFactory jobBuilderFactory: objeto que cria jobs.'
 msg.spring_batch.cdi.StepBuilderFactory = '@Autowired public StepBuilderFactory stepBuilderFactory: objeto que cria steps.'
@@ -14,7 +15,7 @@ msg.spring_batch.cdi.JobLauncher = '@Autowired public JobLauncher jobLauncher: i
 
 msg.spring_batch.beans.JobExecutionListenerSupport = '@Bean public JobExecutionListenerSupport JobListener(): cria um novo objeto de uma classe que extende JobExecutionListenerSupport.'
 msg.spring_batch.beans.StepExecutionListener = '@Bean public StepExecutionListener StepListener(): cria um novo objeto de uma classe que implementa  StepExecutionListener.'
-msg.spring_batch.beans.InfoItemProcessor = '@Bean public InfoItemProcessor infoItemProcessor(): cria um novo objeto de uma classe que implementa ItemProcessor<Object1, Object2>(<Info, Info>).'
+msg.spring_batch.beans.InfoItemProcessor = '@Bean public InfoItemProcessor infoItemProcessor(): cria um novo objeto de uma classe que implementa ItemProcessor<Info, Info>'
 msg.spring_batch.beans.FlatFileItemReader = '@Bean public FlatFileItemReader < Info > infoItemReader(): cria um novo objeto que lê um arquivo de texto e tranforma em objetos.'
 msg.spring_batch.beans.JdbcBatchItemWriter = '@Bean public JdbcBatchItemWriter<Info> infoItemWriter(): cria um novo objeto com informaçõe para salvar informações no banco.'
 msg.spring_batch.beans.infoItemStep = '@Bean public Step infoItemStep(): cria e disponibiliza um step específico.'
@@ -33,8 +34,8 @@ msg.spring_batch.utilizado.FlatFileItemReader = 'utilizado por: StepBuilderFacto
 msg.spring_batch.utilizado.JdbcBatchItemWriter = 'utilizado por: StepBuilderFactory.'
 msg.spring_batch.utilizado.infoItemStep = 'utilizado por: infoJob().'
 msg.spring_batch.utilizado.infoJob = 'utilizado por: Exec().'
-msg.spring_batch.utiliza.FlatFileItemReader = 'utiliza: FlatFileItemReaderBuilder<Objeto>(<Info>).'
-msg.spring_batch.utiliza.JdbcBatchItemWriter = 'utiliza: JdbcBatchItemWriterBuilder<Objeto>.'
+msg.spring_batch.utiliza.FlatFileItemReader = 'utiliza: FlatFileItemReaderBuilder<Info>.'
+msg.spring_batch.utiliza.JdbcBatchItemWriter = 'utiliza: JdbcBatchItemWriterBuilder<Info>.'
 msg.spring_batch.utiliza.infoItemStep = 'utiliza: StepBuilderFactory.'
 msg.spring_batch.utiliza.infoJob = 'utiliza: JobBuilderFactory.'
 msg.spring_batch.utiliza.execjob = 'utiliza: stepBuilderFactory, JobLauncher.'
@@ -48,7 +49,7 @@ msg.spring_batch.depende.jobParametersBuilder = 'depende: String: chave, Date: v
 msg.spring_batch.override.JobExecutionListenerSupport = '@Override public void afterJob(JobExecution jobExecution): executa após a execução do job.'
 msg.spring_batch.override.StepExecutionListener_1 = '@Override public void beforeStep(StepExecution stepExecution): executa antes da execução do step.'
 msg.spring_batch.override.StepExecutionListener_2 = '@Override public ExitStatus afterStep(StepExecution stepExecution): executa após a execução do step.'
-msg.spring_batch.override.InfoItemProcessor = '@Override public Object2 process(Object1 item): função que tranforma / filtra o objeto de entrada e retorna um novo objeto.'
+msg.spring_batch.override.InfoItemProcessor = '@Override public Info process(Info item): função que tranforma / filtra o objeto de entrada e retorna um novo objeto.'
 
 msg.spring_batch.get.execjob = '@GetMapping("/execjob") public String Exec(): endpoint que executa um job e retorna o resultado do console.'
 
@@ -56,9 +57,9 @@ msg.spring_batch.metodos.jobBuilderFactory.get = '.get(String): um nome único p
 msg.spring_batch.metodos.jobBuilderFactory.listener = '.listener(JobExecutionListener): registra um listener para o evento de fim de execução do job.'
 msg.spring_batch.metodos.jobBuilderFactory.listener = '.start(Step): um step que será executado.'
 msg.spring_batch.metodos.stepBuilderFactory.get = '.get(String): um nome único para o step.'
-msg.spring_batch.metodos.stepBuilderFactory.chunk = '.< Object1, Object2 > chunk(int): método que define o tamanho do Chunck, a quantidade de registros salvos de uma vez.'
+msg.spring_batch.metodos.stepBuilderFactory.chunk = '.< Info, Info > chunk(int): método que define o tamanho do Chunck, a quantidade de registros salvos de uma vez.'
 msg.spring_batch.metodos.stepBuilderFactory.reader = '.reader(infoItemReader()): registra o reader que será utilizado nesse step.'
-msg.spring_batch.metodos.stepBuilderFactory.processor = '.processor((ItemProcessor<Object1, Object2>): registra o processor que será utilizado nesse step.'
+msg.spring_batch.metodos.stepBuilderFactory.processor = '.processor((ItemProcessor<Info, Info>): registra o processor que será utilizado nesse step.'
 msg.spring_batch.metodos.stepBuilderFactory.writer = '.writer(infoItemWriter()): registra o writer que será utilizado nesse step.'
 msg.spring_batch.metodos.stepBuilderFactory.listener = '.listener(StepListener()): registra um listener.'
 msg.spring_batch.metodos.jobLauncher.run = '.run(Job, JobParameters): executa esse job com esses parametros.'
@@ -69,11 +70,11 @@ msg.spring_batch.metodos.jobParametersBuilder.addDate = '.addDate(String, Date):
 
 msg.spring_batch.metodos.FlatFileItemReaderBuilder.name = '.name(String): nome único do reader.'
 msg.spring_batch.metodos.FlatFileItemReaderBuilder.resource = '.resource(new ClassPathResource("f1.txt")): fonte para ser usado como input, ClassPathResource: caminho do arquivo em resources.'
-msg.spring_batch.metodos.FlatFileItemReaderBuilder.delimited = '.delimited(): retorna um DelimitedBuilder<Object>.'
+msg.spring_batch.metodos.FlatFileItemReaderBuilder.delimited = '.delimited(): retorna um DelimitedBuilder<Info>.'
 msg.spring_batch.metodos.FlatFileItemReaderBuilder.names = '.names(new String[]{ "id", "name", "CPF"}): utiliza os campos de entrada p / delimitar o texto do arquivo.'
-msg.spring_batch.metodos.FlatFileItemReaderBuilder.fieldSetMapper = '.fieldSetMapper(FieldSetMapper<Object>): seta uma implementaçao FieldSetMapper: cria os objetos a partir dos nomes passados e dos valores lidos.'
+msg.spring_batch.metodos.FlatFileItemReaderBuilder.fieldSetMapper = '.fieldSetMapper(FieldSetMapper<Info>): seta uma implementaçao FieldSetMapper: cria os objetos a partir dos nomes passados e dos valores lidos.'
 
-msg.spring_batch.metodos.JdbcBatchItemWriterBuilder.itemSqlParameterSourceProvider = '.itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>()): extrai parametros do item passado.'
+msg.spring_batch.metodos.JdbcBatchItemWriterBuilder.itemSqlParameterSourceProvider = '.itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>()): extrai campos do item passado.'
 msg.spring_batch.metodos.JdbcBatchItemWriterBuilder.sql = '.sql("INSERT INTO ..."): texto sql de insert.'
 msg.spring_batch.metodos.JdbcBatchItemWriterBuilder.dataSource = '.dataSource(dataSource): bean dataSource injetado.'
 export default msg

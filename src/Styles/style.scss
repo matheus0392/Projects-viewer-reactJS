@@ -1,12 +1,47 @@
-//@import 'bootstrap';
+@import "toastr";
 @import 'settings';
 @import 'components';
 @import 'viewes';
 
 
+#root {
+    position: absolute;
+    width: 100%;
+    min-height: 100vh;
+    max-height: -webkit-fill-available
+}
+
+.main {
+    position: absolute;
+    padding-top: 5rem;
+    min-height: inherit;
+    width: 100%;
+    background: #aaa;
+}
 
 
+.home,
+.methods,
+.api {
+    padding: 2rem;
+}
 
-.icon-link{
+.home-header,
+.methods-header,
+.api-header {
+
+    div:first-child {
+        display: flex;
+    }
+
+    span {
+        h3 {
+            margin: 0.5rem;
+        }
+    }
+}
+
+
+.icon-link {
     cursor: pointer;
 }

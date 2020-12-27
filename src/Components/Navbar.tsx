@@ -1,7 +1,7 @@
 import React from 'react'
-import { useState, useEffect, useContext } from "react"
+import { useState, useContext } from "react"
 import PropTypes from 'prop-types'
-import { Button, Row, Col } from 'reactstrap';
+import { Button, Col } from 'reactstrap';
 
 import DropdownBox from '@/src/Components/DropdownBox'
 import ConfigContext from "@/src/ConfigContext"
@@ -12,7 +12,7 @@ const fr_flag = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_
 const usa_flag = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png'
 
 const Navbar = (props) => {
-    const [showNotifications, setShowNotifications] = useState(false)
+    //const [showNotifications, setShowNotifications] = useState(false)
     const [showMenu, setShowMenu] = useState(false)
     const [closed, setClosed] = useState(true)
     const { language } = useContext(ConfigContext)
@@ -60,9 +60,9 @@ const Navbar = (props) => {
                                 setConfig({ language: 'pt' })
                                 localStorage.setItem("config", JSON.stringify({ language: 'pt' }))
                                 setShowMenu(false)
-                                setShowNotifications(false)
+                                //setShowNotifications(false)
                             }}>
-                                <img style={{ maxWidth: '30px' }} src={br_flag} />
+                                <img style={{ maxWidth: '30px', height: '21px', marginRight: '5px' }} src={br_flag} />
                                 <span> {Translate('pt')}</span>
                             </Button>
                         </span>
@@ -74,9 +74,9 @@ const Navbar = (props) => {
                                 setConfig({ language: 'fr' })
                                 localStorage.setItem("config", JSON.stringify({ language: 'fr' }))
                                 setShowMenu(false)
-                                setShowNotifications(false)
+                                //setShowNotifications(false)
                             }}>
-                                <img style={{ maxWidth: '30px' }} src={fr_flag} />
+                                <img style={{ maxWidth: '30px', height: '21px', marginRight: '5px' }} src={fr_flag} />
                                 <span> {Translate('fr')}</span>
                             </Button>
                         </span>
@@ -87,9 +87,9 @@ const Navbar = (props) => {
                                 setConfig({ language: 'en' })
                                 localStorage.setItem("config", JSON.stringify({ language: 'en' }))
                                 setShowMenu(false)
-                                setShowNotifications(false)
+                                //setShowNotifications(false)
                             }}>
-                                <img style={{ maxWidth: '30px' }} src={usa_flag} />
+                                <img style={{ maxWidth: '30px', height: '21px', marginRight: '5px' }} src={usa_flag} />
                                 <span> {Translate('en')}</span>
                             </Button>
                         </span>
@@ -110,7 +110,7 @@ const Navbar = (props) => {
     }
 
     return (
-        <nav className="navbar navbar--90 justify-content-between">
+        <nav className="navbar justify-content-between">
             <div className="container-fluid pl-0 mobile-padding">
                 <Col md={12} style={{ display: 'flex' }}>
                     <div style={{ flex: 7 }} />

@@ -9,7 +9,7 @@ module.exports = (env) => {
 
     entry: ["@babel/polyfill", "./src/index.js"],
 
-    devtool: 'eval-source-map', //'cheap-module-source-map', //
+    devtool: 'eval', //'cheap-module-source-map', //-source-map
 
     watchOptions: {
       aggregateTimeout: 100,
@@ -39,7 +39,11 @@ module.exports = (env) => {
       ca: fs.readFileSync('.cert/rootCA.pem'),
       allowedHosts: [
         'msnascimento.dev'
-      ]
+      ],
+      watchOptions: {
+        aggregateTimeout: 100,
+        poll: 100,
+      },
     },
 
     plugins: [

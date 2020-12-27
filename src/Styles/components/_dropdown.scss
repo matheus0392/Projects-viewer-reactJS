@@ -1,4 +1,3 @@
-
 $dropdown-padding: .7rem;
 $theme-gray-low: #aaa;
 
@@ -18,11 +17,23 @@ $theme-gray-low: #aaa;
   height: 15rem;
   padding: $dropdown-padding;
   position: absolute;
-  width: 100%;;
+  width: 100%;
   z-index: 1000;
 }
 
 .dropdown-custom__footer {
   bottom: $dropdown-padding;
   margin-top: auto;
+}
+
+
+.menu-dropdown {
+  button {
+    border-radius: 0;
+    width: -webkit-fill-available;
+    text-align: left;
+  }
+  button:first {
+    border-radius: 0.25rem;
+  }
 }

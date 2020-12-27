@@ -12,7 +12,7 @@ vs, --branco
 
 const StledDiv = styled.div`
     .code{
-        font-size:1rem !important;
+        font-size: 0.95rem !important;
         max-width: 95vw;
     }
 `

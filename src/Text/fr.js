@@ -1,10 +1,11 @@
 import obj from './obj'
 
 let msg = JSON.parse(JSON.stringify(obj))
-msg.pt="Portuguais"
-msg.fr="Fraçais"
-msg.en="Anglais"
-msg.metodos='Méthodes'
+msg.pt = "Portuguais"
+msg.fr = "Fraçais"
+msg.en = "Anglais"
+msg.inicio = 'Départ'
+msg.metodos = 'Méthodes'
 
 
 msg.spring_batch.annotation.EnableBatchProcessing = '@EnableBatchProcessing: injecter beans JobRepository, JobLauncher, JobRegistry, PlatformTransactionManager, JobBuilderFactory et StepBuilderFactory.'
@@ -15,4 +16,4 @@ msg.spring_batch.cdi.JobLauncher = '@Autowired public JobLauncher jobLauncher: i
 
 
 
-export default  msg
+export default msg

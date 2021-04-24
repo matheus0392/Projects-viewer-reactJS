@@ -1,25 +1,27 @@
 import { Link } from 'react-router-dom'
 
-import Translate from '@/src/Util/Translate'
+import { useTranslation } from 'react-i18next'
 import Code from '@/src/Components/CodeHighligther'
 
-const annotation = 'spring_batch.annotation.'
-const cdi = 'spring_batch.cdi.'
-const method = 'spring_batch.metodos.'
-const override = 'spring_batch.override.'
-const rely = 'spring_batch.depende.'
-const beans = 'spring_batch.beans.'
-const used = 'spring_batch.utilizado.'
-const use = 'spring_batch.utiliza.'
+const annotation = 'spring_batch_annotation_'
+const cdi = 'spring_batch_cdi_'
+const method = 'spring_batch_metodos_'
+const override = 'spring_batch_override_'
+const rely = 'spring_batch_depende_'
+const beans = 'spring_batch_beans_'
+const used = 'spring_batch_utilizado_'
+const use = 'spring_batch_utiliza_'
 
 function Methods() {
+
+	const { t } = useTranslation()
 	return (
 		<div className="methods">
 			<header className="api-header" >
 				<div>
 					<span>
 						<h3>
-							<Link to={"/"}>{Translate('inicio')}</Link>
+							<Link to={"/"}>{t('inicio')}</Link>
 						</h3>
 					</span>
 					<span>
@@ -29,97 +31,97 @@ function Methods() {
 					</span>
 				</div>
 				<div>
-					<h2>{Translate('metodos')}</h2>
+					<h2>{t('metodos')}</h2>
 				</div>
 			</header>
 			<div>
 				<Code code={`
-${Translate(annotation + 'EnableBatchProcessing')}
+${t(annotation + 'EnableBatchProcessing')}
 
-${Translate(cdi + 'dataSource')}
+${t(cdi + 'dataSource')}
 
-${Translate(cdi + 'JobBuilderFactory')}
-	${Translate(use + 'JobBuilderFactory')}
-	${Translate(used + 'JobBuilderFactory')}
+${t(cdi + 'JobBuilderFactory')}
+	${t(use + 'JobBuilderFactory')}
+	${t(used + 'JobBuilderFactory')}
 
-${Translate(cdi + 'StepBuilderFactory')}
-	${Translate(use + 'StepBuilderFactory')}
-	${Translate(used + 'StepBuilderFactory')}
+${t(cdi + 'StepBuilderFactory')}
+	${t(use + 'StepBuilderFactory')}
+	${t(used + 'StepBuilderFactory')}
 
-${Translate(cdi + 'JobLauncher')}
-	${Translate(rely + 'JobLauncher')}
-	${Translate(use + 'JobLauncher')}
-	${Translate(used + 'JobLauncher')}
+${t(cdi + 'JobLauncher')}
+	${t(rely + 'JobLauncher')}
+	${t(use + 'JobLauncher')}
+	${t(used + 'JobLauncher')}
 
-${Translate(beans + 'JobExecutionListenerSupport')}
-	${Translate(override + 'JobExecutionListenerSupport')}
-	${Translate(used + 'JobExecutionListenerSupport')}
-
-
-${Translate(beans + 'StepExecutionListener')}
-	${Translate(override + 'StepExecutionListener_1')}
-	${Translate(override + 'StepExecutionListener_2')}
-	${Translate(used + 'StepExecutionListener')}
-
-${Translate(beans + 'InfoItemProcessor')}
-	${Translate(override + 'InfoItemProcessor')}
-	${Translate(used + 'InfoItemProcessor')}
+${t(beans + 'JobExecutionListenerSupport')}
+	${t(override + 'JobExecutionListenerSupport')}
+	${t(used + 'JobExecutionListenerSupport')}
 
 
-${Translate(beans + 'FlatFileItemReader')}
-	${Translate(used + 'FlatFileItemReader')}
-	${Translate(use + 'FlatFileItemReader')}
+${t(beans + 'StepExecutionListener')}
+	${t(override + 'StepExecutionListener_1')}
+	${t(override + 'StepExecutionListener_2')}
+	${t(used + 'StepExecutionListener')}
 
-${Translate(beans + 'JdbcBatchItemWriter')}
-	${Translate(used + 'JdbcBatchItemWriter')}
-	${Translate(use + 'JdbcBatchItemWriter')}
+${t(beans + 'InfoItemProcessor')}
+	${t(override + 'InfoItemProcessor')}
+	${t(used + 'InfoItemProcessor')}
 
-${Translate(beans + 'infoItemStep')}
-	${Translate(rely + 'infoItemStep')}
-	${Translate(used + 'infoItemStep')}
-	${Translate(use + 'infoItemStep')}
 
-${Translate(beans + 'infoJob')}
-	${Translate(rely + 'infoJob')}
-	${Translate(used + 'infoJob')}
-	${Translate(use + 'infoJob')}
+${t(beans + 'FlatFileItemReader')}
+	${t(used + 'FlatFileItemReader')}
+	${t(use + 'FlatFileItemReader')}
 
-${Translate('spring_batch.get.execjob')}
-	${Translate(rely + 'execjob')}
-	${Translate(use + 'execjob')}
+${t(beans + 'JdbcBatchItemWriter')}
+	${t(used + 'JdbcBatchItemWriter')}
+	${t(use + 'JdbcBatchItemWriter')}
+
+${t(beans + 'infoItemStep')}
+	${t(rely + 'infoItemStep')}
+	${t(used + 'infoItemStep')}
+	${t(use + 'infoItemStep')}
+
+${t(beans + 'infoJob')}
+	${t(rely + 'infoJob')}
+	${t(used + 'infoJob')}
+	${t(use + 'infoJob')}
+
+${t('spring_batch_get_execjob')}
+	${t(rely + 'execjob')}
+	${t(use + 'execjob')}
 
 jobBuilderFactory
-${Translate(method + 'jobBuilderFactory.get')}
-${Translate(method + 'jobBuilderFactory.listener')}
-${Translate(method + 'jobBuilderFactory.listener')}
+${t(method + 'jobBuilderFactory_get')}
+${t(method + 'jobBuilderFactory_listener')}
+${t(method + 'jobBuilderFactory_listener')}
 
 stepBuilderFactory
-${Translate(method + 'stepBuilderFactory.get')}
-${Translate(method + 'stepBuilderFactory.chunk')}
-${Translate(method + 'stepBuilderFactory.reader')}
-${Translate(method + 'stepBuilderFactory.processor')}
-${Translate(method + 'stepBuilderFactory.writer')}
-${Translate(method + 'stepBuilderFactory.listener')}
+${t(method + 'stepBuilderFactory_get')}
+${t(method + 'stepBuilderFactory_chunk')}
+${t(method + 'stepBuilderFactory_reader')}
+${t(method + 'stepBuilderFactory_processor')}
+${t(method + 'stepBuilderFactory_writer')}
+${t(method + 'stepBuilderFactory_listener')}
 
 jobLauncher
-${Translate(method + 'jobLauncher.run')}
+${t(method + 'jobLauncher_run')}
 
 jobParametersBuilder
-${Translate(method + 'jobParametersBuilder.toJobParameters')}
-${Translate(method + 'jobParametersBuilder.addDate')}
-	${Translate(rely + 'jobParametersBuilder')}
+${t(method + 'jobParametersBuilder_toJobParameters')}
+${t(method + 'jobParametersBuilder_addDate')}
+	${t(rely + 'jobParametersBuilder')}
 
 FlatFileItemReaderBuilder<Info>()
-${Translate(method + 'FlatFileItemReaderBuilder.name')}
-${Translate(method + 'FlatFileItemReaderBuilder.resource')}
-${Translate(method + 'FlatFileItemReaderBuilder.delimited')}
-${Translate(method + 'FlatFileItemReaderBuilder.names')}
-${Translate(method + 'FlatFileItemReaderBuilder.fieldSetMapper')}
+${t(method + 'FlatFileItemReaderBuilder_name')}
+${t(method + 'FlatFileItemReaderBuilder_resource')}
+${t(method + 'FlatFileItemReaderBuilder_delimited')}
+${t(method + 'FlatFileItemReaderBuilder_names')}
+${t(method + 'FlatFileItemReaderBuilder_fieldSetMapper')}
 
 JdbcBatchItemWriterBuilder<Info>()
-${Translate(method + 'JdbcBatchItemWriterBuilder.itemSqlParameterSourceProvider')}
-${Translate(method + 'JdbcBatchItemWriterBuilder.sql')}
-${Translate(method + 'JdbcBatchItemWriterBuilder.dataSource')}
+${t(method + 'JdbcBatchItemWriterBuilder_itemSqlParameterSourceProvider')}
+${t(method + 'JdbcBatchItemWriterBuilder_sql')}
+${t(method + 'JdbcBatchItemWriterBuilder_dataSource')}
 	`} />
 			</div>
 		</div>

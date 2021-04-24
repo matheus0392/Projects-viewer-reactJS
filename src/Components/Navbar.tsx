@@ -2,21 +2,49 @@ import React from 'react'
 import { useState, useContext } from "react"
 import PropTypes from 'prop-types'
 import { Button, Col } from 'reactstrap';
+import Styled from 'styled-components'
 
 import DropdownBox from '@/src/Components/DropdownBox'
 import ConfigContext from "@/src/ConfigContext"
-import Translate from '@/src/Util/Translate'
+import { useTranslation } from 'react-i18next'
 
 const br_flag = 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/320px-Flag_of_Brazil.svg.png'
 const fr_flag = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/320px-Flag_of_France.svg.png'
 const usa_flag = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png'
 
+const languages = [
+    { language: 'pt', flag: br_flag },
+    { language: 'fr', flag: fr_flag },
+    { language: 'en', flag: usa_flag }
+]
+
+const StyledButton = Styled(Button)`
+    height: 2.5rem;
+    width: 4rem;
+`
+
+const StyledImage = Styled.img`
+   /* max-width: 36px;
+    min-width: 36px;
+    max-height: 24px;
+    min-height: 24px;
+    */
+   width: 2.5rem;
+    height: -webkit-fill-available;
+`
+
+
+
 const Navbar = (props) => {
-    //const [showNotifications, setShowNotifications] = useState(false)
     const [showMenu, setShowMenu] = useState(false)
-    const [closed, setClosed] = useState(true)
     const { language } = useContext(ConfigContext)
     const { setConfig } = props
+
+    const { t, i18n } = useTranslation()
+
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng)
+    };
 
     const menu = () => {
         return (
@@ -24,20 +52,15 @@ const Navbar = (props) => {
                 <span >
                     {(!showMenu || true)
                         && (
-                            <Button onClick={() => {
-                                if (!closed) {
-                                    setShowMenu(true)
-                                } else {
-                                    setShowMenu(true)
-                                    setClosed(false)
-                                }
+                            <StyledButton onClick={() => {
+                                setShowMenu(!showMenu)
                             }}
                             >
                                 {getFlag()}
-                            </Button>
+                            </StyledButton>
                         )
                     }
-                    {showMenu && !closed ? openedMenu() : ''}
+                    {showMenu ? openedMenu() : ''}
                 </span>
             </div>
         );
@@ -50,62 +73,36 @@ const Navbar = (props) => {
                 className="menu-dropdown"
                 onClose={() => {
                     setShowMenu(false)
-                    setClosed(true)
                 }}
             >
-                <div>
-                    <div>
-                        <span>
-                            <Button color="secondary" onClick={() => {
-                                setConfig({ language: 'pt' })
-                                localStorage.setItem("config", JSON.stringify({ language: 'pt' }))
-                                setShowMenu(false)
-                                //setShowNotifications(false)
-                            }}>
-                                <img style={{ maxWidth: '30px', height: '21px', marginRight: '5px' }} src={br_flag} />
-                                <span> {Translate('pt')}</span>
-                            </Button>
-                        </span>
+                {languages.map((lang, key) => {
+                    return <div key={key}>
+                        <div>
+                            <span>
+                                <StyledButton color="secondary" onClick={() => {
+                                    setConfig({ language: lang.language })
+                                    changeLanguage(lang.language)
+                                    localStorage.setItem("config", JSON.stringify({ language: lang.language }))
+                                    setShowMenu(false)
+                                }}>
+                                    <StyledImage src={lang.flag} />
+                                    <span>{` ${t(lang.language)}`}</span>
+                                </StyledButton>
+                            </span>
+                        </div>
                     </div>
-
-                    <div>
-                        <span>
-                            <Button color="secondary" onClick={() => {
-                                setConfig({ language: 'fr' })
-                                localStorage.setItem("config", JSON.stringify({ language: 'fr' }))
-                                setShowMenu(false)
-                                //setShowNotifications(false)
-                            }}>
-                                <img style={{ maxWidth: '30px', height: '21px', marginRight: '5px' }} src={fr_flag} />
-                                <span> {Translate('fr')}</span>
-                            </Button>
-                        </span>
-                    </div>
-                    <div>
-                        <span>
-                            <Button color="secondary" onClick={() => {
-                                setConfig({ language: 'en' })
-                                localStorage.setItem("config", JSON.stringify({ language: 'en' }))
-                                setShowMenu(false)
-                                //setShowNotifications(false)
-                            }}>
-                                <img style={{ maxWidth: '30px', height: '21px', marginRight: '5px' }} src={usa_flag} />
-                                <span> {Translate('en')}</span>
-                            </Button>
-                        </span>
-                    </div>
-                </div>
+                })}
             </DropdownBox>
         );
     }
 
     const getFlag = () => {
-        if (language == undefined || language == 'pt') {
-            return <img style={{ maxWidth: '30px' }} src={br_flag} />
-        } else if (language == 'fr') {
-            return <img style={{ maxWidth: '30px' }} src={fr_flag} />
-        } else if (language == 'en') {
-            return <img style={{ maxWidth: '30px' }} src={usa_flag} />
+        if (language === 'pt' || language === undefined) {
+            return <StyledImage src={br_flag} />
+        } else if (language === 'fr') {
+            return <StyledImage src={fr_flag} />
+        } else if (language === 'en') {
+            return <StyledImage src={usa_flag} />
         }
     }
 

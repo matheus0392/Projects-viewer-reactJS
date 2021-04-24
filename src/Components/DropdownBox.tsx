@@ -1,19 +1,16 @@
 import React from 'react';
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import PropTypes from 'prop-types';
-//import onClickOutside from 'react-onclickoutside';
+import onClickOutside from 'react-onclickoutside';
 import { Animated } from 'react-animated-css';
 
 
-const DropdownBox = (props) => {
-    const [showing, setShowing] = useState(true);
+function DropdownBox(props) {
 
-    useEffect(() => { }, [])
-
-    /*const handleClickOutside = () => {
+    DropdownBox.handleClickOutside = (event) => {
         const { onClose } = props;
         onClose();
-    }*/
+    }
 
     const {
         children,
@@ -27,7 +24,7 @@ const DropdownBox = (props) => {
         <Animated
             animationIn="fadeIn"
             animationOut="fadeOut"
-            isVisible={showing}
+            isVisible
             animationInDuration={500}
             className={`box ${className}`}
             style={{ ...style, width, minWidth }}
@@ -55,4 +52,8 @@ DropdownBox.defaultProps = {
     style: {},
 };
 
-export default DropdownBox//onClickOutside(DropdownBox);
+const clickOutsideConfig = {
+    handleClickOutside: () => DropdownBox.handleClickOutside
+};
+
+export default onClickOutside(DropdownBox, clickOutsideConfig);

@@ -5,7 +5,7 @@ import { Button } from 'reactstrap';
 import toastr from 'toastr';
 import styled from "styled-components"
 
-import Translate from '@/src/Util/Translate'
+import { useTranslation } from 'react-i18next'
 import API from '@/src/services/API'
 
 
@@ -27,18 +27,20 @@ function ApiREST() {
     const [name, setName] = useState();
     const [cpf, setCpf] = useState();
 
+    const { t } = useTranslation()
+
     return (
         <div className="api">
             <header className="api-header" >
                 <div>
                     <span>
                         <h3>
-                            <Link to={"/"}>{Translate('inicio')}</Link>
+                            <Link to={"/"}>{t('inicio')}</Link>
                         </h3>
                     </span>
                     <span>
                         <h3>
-                            <Link to={"/methods"}>{Translate('metodos')}</Link>
+                            <Link to={"/methods"}>{t('metodos')}</Link>
                         </h3>
                     </span>
                 </div>
@@ -50,7 +52,7 @@ function ApiREST() {
                 <Button color="danger" onClick={() => {
                     API.GetAll()
                         .then(resp => setApiResponse(resp.data))
-                        .catch(e => toastr.error('Id repetido ou CPF inválido', 'Não foi possível salvar', { "positionClass": "toast-top-center" }))
+                        .catch(e => toastr.error('Ocorreu um erro', 'Não foi possível recuperar registros', { "positionClass": "toast-top-center" }))
                 }}>
                     Getall
                 </Button>

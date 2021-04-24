@@ -22,6 +22,13 @@ const API = {
             url: '/WebApi/getbycpf',
             params: cpf
         })
+    },
+
+    execJob() {
+        return axios({
+            method: 'GET',
+            url: '/WebApi/execjob',
+        })
     }
 }
 

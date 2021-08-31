@@ -24,23 +24,22 @@ module.exports = (env) => {
     devServer: {
       contentBase: path.resolve(__dirname, './dist'),
       host: '0.0.0.0',
-      port: 443,
+      port: 80,
+      https: false,
+      /*port: 443,
       https: {
         key: fs.readFileSync('.cert/server.key'),
         cert: fs.readFileSync('.cert/server.crt'),
         ca: fs.readFileSync('.cert/rootCA.pem'),
       },
+      //compress: true,
+      */
       disableHostCheck: true,
       allowedHosts: [
         'msnascimento.dev',
         'localhost',
-        'https://localhost/',
-        '0.0.0.0',
-        'https://0.0.0.0/',
         '127.0.0.1',
-        'https://127.0.0.1/',
       ],
-      //compress: true,
       historyApiFallback: true,
       proxy: [{
         context: '/WebApi/**',
@@ -69,7 +68,7 @@ module.exports = (env) => {
       }),
       new LiveReloadPlugin({
         appendScriptTag: true,
-        useSourceHash :false,
+        useSourceHash: false,
         hostname: 'localhost',
         protocol: 'http',
       }),

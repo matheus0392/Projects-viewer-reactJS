@@ -1,16 +1,19 @@
 import { Link } from 'react-router-dom'
 import { useState } from "react"
 import { useTranslation } from 'react-i18next'
-import { Button, Col } from 'reactstrap';
-import toastr from 'toastr'
+import { Button, Col } from 'reactstrap'
+import _ from 'lodash';
 
 
 import '@/src/Styles/Home'
-import API from '@/src/services/API'
 import Console from '@/src/Components/Console'
+import { connect, send } from '@/src/vendor/websock/app'
 
 const localUrl = `${window.location.href}`
 const backUrl = localUrl + "WebApi/"
+
+var consoleCount = 0
+var consoleText = []
 
 function Home() {
 
@@ -18,19 +21,38 @@ function Home() {
     const [result, setResult] = useState([]);
     const { t } = useTranslation()
 
-    const execJob = () => {
-        API.execJob()
-            .then(({ data }) => {
-                result.push(data)
-                setResult(JSON.parse(JSON.stringify(result)))
-                setConsole(true)
-            })
-            .catch(error => toastr.error(error))
+    const newJob = () => {
+        execJob(consoleCount++)
     }
+
+    const execJob = (index) => {
+        let stompClient = connect(index, function (data) {
+
+            setResult(() => {
+                if (consoleText[data.index] == null) {
+                    consoleText[data.index] = { index: data.index, message: [data.message[0]], client: data.client }
+                } else {
+                    consoleText[data.index].message.push(data.message[0])
+                }
+
+                return _.cloneDeep(consoleText)
+            })
+        })
+        setTimeout(() => {
+            setConsole(true)
+            send(stompClient, `{ "tab":${index},  "name": "JOB1" }`)
+        }, 500)
+    }
+
     const onRemove = (key) => {
-        result.splice(key, 1)
-        setResult(JSON.parse(JSON.stringify(result)))
-        if (result.length === 0) {
+        let tab = result.find(each => each && each.index == key)
+        if (tab && tab.client) {
+            tab.client.disconnect()
+            consoleText[key] = null
+            setResult(_.cloneDeep(consoleText))
+        }
+
+        if (consoleText.filter(each => each != null).length == 0) {
             setConsole(false)
         }
     }
@@ -62,7 +84,8 @@ function Home() {
                     <a target="_blank" href={`${backUrl}`} style={{ textAlign: "center", color: 'white' }} > {`${backUrl}`} </a>
                 </p>
                 <p>
-                    <a target="_blank" href={`${backUrl}execjob`} style={{ textAlign: "center", color: 'white' }} > {`${backUrl}execjob`} </a> <Button onClick={execJob}> Execute Job</Button>
+                    <a target="_blank" href={`${backUrl}execjob`} style={{ textAlign: "center", color: 'white' }} > {`${backUrl}execjob`} </a>
+                    <Button onClick={() => newJob()}> Execute Job</Button>
                 </p>
             </div>
 

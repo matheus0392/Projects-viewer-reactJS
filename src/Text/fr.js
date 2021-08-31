@@ -1,11 +1,15 @@
 import obj from './obj'
+import _ from 'lodash';
 
-let msg = JSON.parse(JSON.stringify(obj))
+let msg = _.cloneDeep(obj)
 msg.pt = "Portugais"
 msg.fr = "Fraçais"
 msg.en = "Anglais"
 msg.inicio = 'Départ'
 msg.metodos = 'Méthodes'
+
+
+msg.aba='Onglet'
 
 msg.spring_batch_annotation_EnableBatchProcessing = '@EnableBatchProcessing: injecter beans JobRepository, JobLauncher, JobRegistry, PlatformTransactionManager, JobBuilderFactory et StepBuilderFactory.'
 msg.spring_batch_cdi_dataSource = '@Autowired public DataSource dataSource: objet avec renseignement de connexion de base de donné configuré en application.properties.'
